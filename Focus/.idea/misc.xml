@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/activity_main.xml" value="0.35260416666666666" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/activity_timer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/activity_timer_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/content_timer_list.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/fragment_default_timers.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/fragment_first.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/fragment_my_timers.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/hillc/Documents/College/FYP/fyp/Focus/app/src/main/res/layout/fragment_timer_list.xml" value="0.35260416666666666" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>

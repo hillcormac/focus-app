@@ -10,7 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Focus">
         <activity
-            android:name=".MainActivity"
+            android:name=".activity.TimerActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activity.TimerListActivity"
+            android:exported="false"
+            android:label="@string/title_activity_timer_list"
+            android:theme="@style/Theme.Focus.NoActionBar" />
+        <activity
+            android:name=".activity.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
