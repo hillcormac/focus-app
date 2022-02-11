@@ -14,6 +14,8 @@
         <!-- Customize your theme here. -->
 
         <item name="android:fontFamily">@font/montserrat_medium</item>
+
+        <item name="timerListBgColour">@color/darker_light_theme</item>
     </style>
 
     <style name="Theme.Focus.NoActionBar">

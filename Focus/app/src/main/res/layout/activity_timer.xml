@@ -13,6 +13,7 @@
         android:layout_marginBottom="16dp"
         android:text="Phase"
         android:textAllCaps="true"
+        android:fontFamily="@font/montserrat_bold"
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/tvIntervals"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,31 +26,47 @@
         android:layout_marginBottom="24dp"
         android:text="Intervals"
         android:textAllCaps="true"
-        android:textSize="24sp"
-        app:layout_constraintBottom_toTopOf="@+id/ivTimer"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toTopOf="@+id/pbTimer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
-    <ImageView
-        android:id="@+id/ivTimer"
+    <ProgressBar
+        android:id="@+id/pbTimer"
         android:layout_width="300dp"
         android:layout_height="300dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.4"
-        app:srcCompat="@android:drawable/ic_lock_idle_alarm" />
+        style="?android:attr/progressBarStyleHorizontal"
+        android:progressDrawable="@drawable/circular_progress_bar"
+        android:background="@drawable/circle_shape"
+        android:max="1000"
+        android:progress="1000" />
 
-    <com.google.android.material.button.MaterialButton
+    <TextView
+        android:id="@+id/tvTimer"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:gravity="center"
+        android:text="0:00"
+        android:textSize="55sp"
+        app:layout_constraintBottom_toBottomOf="@+id/pbTimer"
+        app:layout_constraintEnd_toEndOf="@+id/pbTimer"
+        app:layout_constraintStart_toStartOf="@+id/pbTimer"
+        app:layout_constraintTop_toTopOf="@+id/pbTimer" />
+
+    <Button
         android:id="@+id/btnControlTimer"
         android:layout_width="150dp"
         android:layout_height="50dp"
         android:layout_marginTop="32dp"
         android:text="start"
+        android:backgroundTint="@color/pale_red"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/ivTimer" />
+        app:layout_constraintTop_toBottomOf="@+id/pbTimer" />
 
     <ImageButton
         android:id="@+id/btnPrevPhase"
@@ -66,7 +83,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/btnControlTimer"
         app:srcCompat="@drawable/chevron_left"
-        app:tint="@color/pale_blue"
+        app:tint="@color/pale_red"
         tools:visibility="visible" />
 
     <ImageButton
@@ -83,7 +100,7 @@
         app:layout_constraintStart_toEndOf="@id/btnControlTimer"
         app:layout_constraintTop_toTopOf="@+id/btnControlTimer"
         app:srcCompat="@drawable/chevron_right"
-        app:tint="@color/pale_blue" />
+        app:tint="@color/pale_red" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/glVert2"

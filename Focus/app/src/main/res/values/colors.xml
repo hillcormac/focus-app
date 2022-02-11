@@ -8,6 +8,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
 
-    <color name="pale_blue">#2688C6</color>
-    <color name="dark_blue">#6666FF</color>
+    <color name="pale_blue">#73a7fa</color>
+    <color name="dark_blue">#146cf7</color>
+    <color name="pale_green">#5cf244</color>
+    <color name="dark_green">#2cbd15</color>
+    <color name="pale_red">#f57a69</color>
+
+    <color name="lighter_dark_theme">#232323</color>
+    <color name="darker_light_theme">#efefef</color>
 </resources>
