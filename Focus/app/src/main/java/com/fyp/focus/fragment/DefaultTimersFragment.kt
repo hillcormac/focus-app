@@ -10,12 +10,17 @@ import android.widget.ListView
 import com.fyp.focus.R
 import com.fyp.focus.activity.TimerActivity
 import com.fyp.focus.adapter.TimerListAdapter
+import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Timer
 import com.fyp.focus.global.GlobalFunctions.logMessage
+import com.fyp.focus.global.UserPreferences
 
 private const val TAG = "DefaultTimersFragment"
 
 class DefaultTimersFragment : Fragment() {
+
+    private lateinit var preferences: UserPreferences
+    private lateinit var dbHelper: DBHelper
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,15 +32,25 @@ class DefaultTimersFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        dbHelper = DBHelper(this.requireContext(), "focus", "default_timers")
+        preferences = UserPreferences(requireContext())
 
-        val pomodoro = Timer("pomodoro", "25:00", "5", "15", 4)
-        val thirtyThirty = Timer("30/30", "30:00", "30", "60", 2)
-        val freeFlow = Timer("Free Flow", "45:00", "15", "30", 2)
+        if (!preferences.defaultTimerDbCreated) {
+//            logMessage(TAG, "table not created, creating now")
+            dbHelper.createTable(dbHelper.writableDatabase)
+            preferences.defaultTimerDbCreated = true
+        }
 
         val timerArray = ArrayList<Timer>()
-        timerArray.add(pomodoro)
-        timerArray.add(thirtyThirty)
-        timerArray.add(freeFlow)
+        val cursor = dbHelper.readAllData(dbHelper.readableDatabase)
+        if (cursor.moveToFirst()) {
+            while (!cursor.isAfterLast) {
+                val timer = Timer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4))
+                timerArray.add(timer)
+//                logMessage(TAG, "timer: $timer")
+                cursor.moveToNext()
+            }
+        }
 
         val adapter = TimerListAdapter(this, timerArray)
         val listView = requireView().findViewById<ListView>(R.id.lvDefaultTimers)
@@ -52,6 +67,4 @@ class DefaultTimersFragment : Fragment() {
             startActivity(intent)
         }
     }
-
-
 }

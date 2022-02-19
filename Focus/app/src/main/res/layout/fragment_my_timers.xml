@@ -7,19 +7,30 @@
     app:layout_anchorGravity="center_horizontal"
     tools:context=".fragment.MyTimersFragment">
 
+    <TextView
+        android:id="@+id/tvMyTimersList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginBottom="50dp"
+        android:textSize="30sp"
+        android:text="No Timers Found" />
+
     <ListView
         android:id="@+id/lvMyTimers"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content" >
+    </ListView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fabMyTimers"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginBottom="16dp"
         android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:backgroundTint="@color/pale_blue"
-        android:src="@drawable/plus_icon"
-        android:scaleType="fitCenter"        />
+        android:scaleType="fitCenter"
+        android:src="@drawable/plus_icon" />
 
 </FrameLayout>
