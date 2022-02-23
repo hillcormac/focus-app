@@ -2,9 +2,13 @@ package com.fyp.focus.activity
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.DialogFragment
 import androidx.viewpager.widget.ViewPager
 import com.fyp.focus.R
 import com.fyp.focus.adapter.TimerTabsAdapter
+import com.fyp.focus.customclass.Timer
+import com.fyp.focus.dialog.CreateCustomTimerDialogFragment
+import com.fyp.focus.fragment.MyTimersFragment
 import com.google.android.material.tabs.TabLayout
 
 private const val TAG = "TimerListActivity"

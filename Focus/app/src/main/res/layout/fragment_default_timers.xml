@@ -10,6 +10,8 @@
     <ListView
         android:id="@+id/lvDefaultTimers"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:dividerHeight="3.0sp"
+        android:divider="?attr/timerListBgColour" />
 
 </FrameLayout>

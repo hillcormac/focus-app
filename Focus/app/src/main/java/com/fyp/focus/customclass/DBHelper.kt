@@ -51,21 +51,33 @@ class DBHelper(
     }
 
     fun readAllData(db: SQLiteDatabase): Cursor {
-        return db.rawQuery("SELECT * FROM $table", null)
+        return db.rawQuery("SELECT * FROM $table;", null)
     }
 
     fun deleteData(db: SQLiteDatabase, name: String): Boolean {
-        val result = db.delete(table, "name='$name'", null)
+        val result = db.delete(table, "name='$name';", null)
         return result == 1
     }
 
     fun isTableEmpty(db: SQLiteDatabase): Boolean {
-        val cursor = db.rawQuery("SELECT COUNT(*) FROM $table", null)
+        val cursor = db.rawQuery("SELECT COUNT(*) FROM $table;", null)
         if (cursor!!.moveToFirst()) {
             if (cursor.getInt(0) == 0) {
+                cursor.close()
                 return true
             }
         }
+        cursor.close()
+        return false
+    }
+
+    fun timerExists(db: SQLiteDatabase, timer: Timer) : Boolean {
+        val cursor = db.rawQuery("SELECT name FROM $table WHERE name='${timer.name}';", null)
+        if (cursor.count > 0) {
+            cursor.close()
+            return true
+        }
+        cursor.close()
         return false
     }
 }

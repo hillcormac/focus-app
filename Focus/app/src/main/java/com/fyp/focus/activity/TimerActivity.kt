@@ -1,10 +1,11 @@
 package com.fyp.focus.activity
 
+import android.content.Context
 import android.content.res.ColorStateList
-import android.graphics.Color
+import android.graphics.drawable.ColorDrawable
+import android.os.*
 import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import android.os.CountDownTimer
+import android.util.TypedValue
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
@@ -39,6 +40,9 @@ class TimerActivity : AppCompatActivity() {
     private lateinit var btnPrevPhase: ImageButton
     private lateinit var btnNextPhase: ImageButton
 
+    private var lightMode = false
+    private lateinit var vibrator: Vibrator
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
@@ -46,6 +50,13 @@ class TimerActivity : AppCompatActivity() {
         val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
+        val outValue = TypedValue()
+        theme.resolveAttribute(R.attr.themeName, outValue, true)
+        if (outValue.string == "light") {
+            lightMode = true
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(resources.getColor(R.color.pale_red)))
+        }
+        vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
         val timerName = intent.getStringExtra("timerName")!!
         val timeWork = intent.getStringExtra("timeWork")!!
@@ -162,6 +173,7 @@ class TimerActivity : AppCompatActivity() {
             }
 
             override fun onFinish() {
+                vibrator.vibrate(600)
                 logMessage(TAG, "timer finished")
                 isTimerRunning = false
                 pbTimer.progress = 0
@@ -259,5 +271,9 @@ class TimerActivity : AppCompatActivity() {
         btnControlTimer.setBackgroundColor(colour)
         btnNextPhase.imageTintList = ColorStateList.valueOf(colour)
         btnPrevPhase.imageTintList = ColorStateList.valueOf(colour)
+        if (lightMode) {
+            logMessage(TAG, "setting title colour = $colour")
+            supportActionBar?.setBackgroundDrawable(ColorDrawable(colour))
+        }
     }
 }

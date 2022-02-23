@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <EditText
+        android:id="@+id/etTimerName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Timer Name"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTimeWorkHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Work"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTimerName" />
+
+    <EditText
+        android:id="@+id/etTimeWorkMins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="minutes"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeWorkHeading" />
+
+    <TextView
+        android:id="@+id/tvTimeWorkDivider"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textSize="20sp"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toEndOf="@id/etTimeWorkMins"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeWorkHeading"
+        android:layout_marginTop="8dp"/>
+
+
+    <EditText
+        android:id="@+id/etTimeWorkSecs"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="seconds"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/tvTimeWorkDivider"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeWorkHeading" />
+
+    <TextView
+        android:id="@+id/tvTimeShortBreakHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Short Break"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTimeWorkMins" />
+
+    <EditText
+        android:id="@+id/etTimeShortBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="minutes"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeShortBreakHeading" />
+
+    <TextView
+        android:id="@+id/tvTimeLongBreakHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Long Break"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTimeShortBreak" />
+
+    <EditText
+        android:id="@+id/etTimeLongBreak"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="minutes"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTimeLongBreakHeading" />
+
+    <TextView
+        android:id="@+id/tvIntervalsHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Intervals"
+        android:textSize="18sp"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTimeLongBreak" />
+
+    <EditText
+        android:id="@+id/etTimerIntervals"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="intervals"
+        android:inputType="number"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvIntervalsHeading" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
