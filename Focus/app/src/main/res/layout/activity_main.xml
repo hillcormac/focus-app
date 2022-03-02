@@ -32,7 +32,7 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="Welcome to Focus"
-    android:textSize="24sp"
+    android:textSize="30sp"
     app:layout_constraintBottom_toTopOf="@+id/glHeaderHorizontal"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
@@ -44,9 +44,24 @@
         android:layout_width="0dp"
         android:layout_margin="8dp"
         android:text="Timers"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
         app:layout_constraintBottom_toTopOf="@+id/glMidHorizontal"
         app:layout_constraintEnd_toStartOf="@+id/glVert"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/glHeaderHorizontal" />
+
+    <Button
+        android:id="@+id/btnTasks"
+        android:layout_height="0dp"
+        android:layout_width="0dp"
+        android:layout_margin="8dp"
+        android:text="Tasks"
+        android:textSize="20sp"
+        android:fontFamily="@font/montserrat_bold"
+        app:layout_constraintBottom_toTopOf="@+id/glMidHorizontal"
+        app:layout_constraintStart_toEndOf="@+id/glVert"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/glHeaderHorizontal" />
 
 

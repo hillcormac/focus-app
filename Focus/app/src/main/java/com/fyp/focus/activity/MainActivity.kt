@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var tvHeader: TextView
     private lateinit var btnTimers: Button
+    private lateinit var btnTasks: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,7 +25,10 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, TimerListActivity::class.java)
             startActivity(intent)
         }
+        btnTasks = findViewById(R.id.btnTasks)
+        btnTasks.setOnClickListener {
+            val intent = Intent(this, TasksActivity::class.java)
+            startActivity(intent)
+        }
     }
-
-
 }

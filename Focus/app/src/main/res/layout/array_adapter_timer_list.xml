@@ -5,7 +5,7 @@
     android:layout_height="170dp"
     android:padding="8dp"
     android:layout_margin="4dp"
-    android:background="@drawable/timer_list_adapter_rectangle_bg" >
+    android:background="@drawable/adapter_rectangle_bg" >
 
     <TextView
         android:id="@+id/tvTimerName"

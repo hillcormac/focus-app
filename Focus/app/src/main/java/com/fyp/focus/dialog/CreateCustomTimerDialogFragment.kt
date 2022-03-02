@@ -13,6 +13,7 @@ import com.fyp.focus.R
 import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Timer
 import com.fyp.focus.global.GlobalFunctions.logMessage
+import com.fyp.focus.global.GlobalFunctions.toastMessage
 import java.lang.ClassCastException
 import java.lang.IllegalStateException
 
@@ -69,13 +70,13 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
                         etTimerIntervals?.text.toString().toInt()
                     )
                     if (dbHelper.timerExists(dbHelper.readableDatabase, timer)) {
-                        Toast.makeText(context, "Timer with name ${timer.name} already exists", Toast.LENGTH_SHORT).show()
+                        toastMessage(requireContext(), "Timer with name ${timer.name} already exists")
                     } else {
                         listener.onTimerCreated(this, timer)
                         dialog.dismiss()
                     }
                 } else {
-                    Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
+                    toastMessage(requireContext(), errorMessage)
                 }
             }
             builder.create()

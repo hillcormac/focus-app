@@ -14,6 +14,10 @@
     <color name="dark_green">#2cbd15</color>
     <color name="pale_red">#f57a69</color>
 
+    <color name="transparent">#00FFFFFF</color>
+
     <color name="lighter_dark_theme">#232323</color>
     <color name="darker_light_theme">#efefef</color>
+    <color name="dark_divider">#888888</color>
+    <color name="light_divider">#444444</color>
 </resources>

@@ -17,7 +17,8 @@
 
         <item name="android:fontFamily">@font/montserrat_medium</item>
 
-        <item name="timerListBgColour">@color/darker_light_theme</item>
+        <item name="adapterBgColour">@color/darker_light_theme</item>
+        <item name="tasksDividerColour">@color/light_divider</item>
     </style>
 
     <style name="Theme.Focus.NoActionBar">

@@ -11,7 +11,7 @@ private const val TAG = "DBHelper"
 
 class DBHelper(
     context: Context,
-    private val dbName: String,
+    dbName: String = "focus",
     private val table: String
 ): SQLiteOpenHelper(context, dbName, null, 1) {
 

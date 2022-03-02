@@ -76,7 +76,7 @@ class TimerActivity : AppCompatActivity() {
     }
 
     private fun initComponents() {
-        setTitle(timer.name)
+        title = timer.name
         tvPhase = findViewById(R.id.tvPhase)
         tvPhase.text = currentPhase
         tvIntervals = findViewById(R.id.tvIntervals)

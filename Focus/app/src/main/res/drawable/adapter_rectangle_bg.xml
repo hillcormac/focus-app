@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="?attr/timerListBgColour" />
+    <solid android:color="?attr/adapterBgColour" />
     <stroke android:color="@color/teal_700" android:width="2dp" />
     <corners android:radius="2dp" />
 </shape>

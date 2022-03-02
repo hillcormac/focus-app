@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <attr name="timerListBgColour" format="reference" />
     <attr name="themeName" format="string"/>
+    <attr name="adapterBgColour" format="reference" />
+    <attr name="tasksDividerColour" format="reference" />
 </resources>
