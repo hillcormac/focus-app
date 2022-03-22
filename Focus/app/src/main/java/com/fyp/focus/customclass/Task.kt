@@ -3,16 +3,17 @@ package com.fyp.focus.customclass
 
 class Task (
     val name: String,
-    val date: String,
     val type: String,
+    val date: String,
+    val time: String,
     val priority: String,
-    val completed: Boolean = false
+    var completed: Boolean = false
 ) {
     override fun toString(): String {
         return """
             name: $name
-            date: $date
             type: $type
+            deadline: $date - $time
             priority: $priority
             completed: $completed
         """.trimIndent()

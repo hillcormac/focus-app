@@ -3,4 +3,5 @@
     <attr name="themeName" format="string"/>
     <attr name="adapterBgColour" format="reference" />
     <attr name="tasksDividerColour" format="reference" />
+    <attr name="oppositeThemeTextColour" format="reference" />
 </resources>

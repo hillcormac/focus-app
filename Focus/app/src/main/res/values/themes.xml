@@ -19,6 +19,7 @@
 
         <item name="adapterBgColour">@color/darker_light_theme</item>
         <item name="tasksDividerColour">@color/light_divider</item>
+        <item name="oppositeThemeTextColour">@color/black</item>
     </style>
 
     <style name="Theme.Focus.NoActionBar">

@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="12dp">
+
+    <EditText
+        android:id="@+id/etTaskName"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/task_name"
+        android:layout_marginTop="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvTaskTypeHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_type"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toStartOf="@id/btnNewTaskType"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etTaskName" />
+
+    <ImageButton
+        android:id="@+id/btnNewTaskType"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"
+        android:padding="0dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTaskName"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="4dp"
+        android:src="@drawable/plus_icon_thin"
+        app:tint="?attr/oppositeThemeTextColour"
+        android:background="@color/transparent" />
+
+
+    <Spinner
+        android:id="@+id/spnTaskType"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskTypeHeading" />
+
+    <TextView
+        android:id="@+id/tvTaskDeadlineHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_deadline"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/spnTaskType" />
+
+    <TextView
+        android:id="@+id/tvTaskDeadline"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/select_task_deadline"
+        android:textSize="16sp"
+        android:textColor="?attr/oppositeThemeTextColour"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@id/tvTaskDeadlineHeading"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDeadlineHeading" />
+
+    <TextView
+        android:id="@+id/tvTaskPriorityHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/task_priority"
+        android:textSize="18sp"
+        android:layout_marginTop="16dp"
+        android:layout_marginStart="4dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskDeadline" />
+
+    <Spinner
+        android:id="@+id/spnTaskPriority"
+        android:layout_width="match_parent"
+        android:layout_height="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTaskPriorityHeading" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

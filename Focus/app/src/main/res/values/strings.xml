@@ -7,4 +7,29 @@
     <string name="tab_text_1">Default Timers</string>
     <string name="tab_text_2">My Timers</string>
 
+    <!-- Create Task Dialog -->
+    <string name="task_name">Task Name</string>
+    <string name="task_type">Task Type</string>
+    <string name="task_deadline">Task Deadline</string>
+    <string name="task_priority">Task Priority</string>
+    <string name="select_task_type">Select a type…</string>
+    <string name="select_task_deadline">Select a deadline…</string>
+
+    <string name="high_priority">High</string>
+    <string name="medium_priority">Medium</string>
+    <string name="low_priority">Low</string>
+    <string-array name="task_priorities">
+        <item>Select a priority…</item>
+        <item>@string/high_priority</item>
+        <item>@string/medium_priority</item>
+        <item>@string/low_priority</item>
+    </string-array>
+
+    <!-- Task Filters -->
+    <string name="task_filter">Filter</string>
+    <string name="filter_by_date">Date</string>
+    <string name="filter_by_priority">Priority</string>
+    <string name="filter_by_type">Type</string>
+
+
 </resources>

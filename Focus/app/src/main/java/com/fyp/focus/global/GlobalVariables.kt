@@ -5,4 +5,6 @@ private const val TAG = "GlobalVariables"
 object GlobalVariables {
     const val loggingEnabled = true
     const val toastEnabled = true
+
+    var taskTypes = ArrayList<String>()
 }

@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.fyp.focus.R
+import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Task
 import com.fyp.focus.global.GlobalFunctions.logMessage
 import com.fyp.focus.global.GlobalFunctions.toastMessage
@@ -17,7 +18,7 @@ import com.fyp.focus.global.GlobalFunctions.toastMessage
 
 private const val TAG = "TasksListAdapter"
 
-class TasksListAdapter(private val context: Context, private val items: ArrayList<Pair<String, Array<Task>>>):
+class TasksListAdapter(private val context: Context, private val dbHelper: DBHelper, private val items: ArrayList<Pair<String, ArrayList<Task>>>):
     RecyclerView.Adapter<TasksListAdapter.ViewHolder>() {
 
         class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -43,7 +44,7 @@ class TasksListAdapter(private val context: Context, private val items: ArrayLis
             }
         }
         holder.rvTasks.layoutManager = LinearLayoutManager(context)
-        holder.rvTasks.adapter = TasksAdapter(context, items[position].second)
+        holder.rvTasks.adapter = TasksAdapter(context, dbHelper, items[position].second)
     }
 
     override fun getItemCount() = items.size

@@ -52,7 +52,7 @@ class MyTimersFragment : Fragment(),
 
         if (!preferences.customTimerDbCreated) {
 //            logMessage(TAG, "table not created, creating now")
-            dbHelper.createTable(dbHelper.writableDatabase)
+            dbHelper.createTimerTable(dbHelper.writableDatabase)
             preferences.customTimerDbCreated = true
         }
 
@@ -104,7 +104,7 @@ class MyTimersFragment : Fragment(),
 
     override fun onTimerCreated(dialog: DialogFragment, timer: Timer) {
         logMessage(TAG, "received timer $timer")
-        dbHelper.insertData(
+        dbHelper.insertTimerData(
             dbHelper.writableDatabase,
             timer.name, timer.timeWork,
             timer.timeShortBreak.toString(),

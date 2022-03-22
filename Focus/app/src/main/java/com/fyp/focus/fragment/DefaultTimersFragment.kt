@@ -37,7 +37,7 @@ class DefaultTimersFragment : Fragment() {
 
         if (!preferences.defaultTimerDbCreated) {
 //            logMessage(TAG, "table not created, creating now")
-            dbHelper.createTable(dbHelper.writableDatabase)
+            dbHelper.createTimerTable(dbHelper.writableDatabase)
             preferences.defaultTimerDbCreated = true
         }
 

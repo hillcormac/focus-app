@@ -3,6 +3,7 @@ package com.fyp.focus.global
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.fyp.focus.R
 
 private const val TAG = "GlobalFunctions"
 

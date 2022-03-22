@@ -11,13 +11,14 @@ import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fyp.focus.R
+import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Task
 import com.fyp.focus.global.GlobalFunctions.logMessage
 import com.fyp.focus.global.GlobalFunctions.toastMessage
 
 private const val TAG = "TasksAdapter"
 
-class TasksAdapter(private val context: Context, private val items: Array<Task>):
+class TasksAdapter(private val context: Context, private val dbHelper: DBHelper, private val items: ArrayList<Task>):
     RecyclerView.Adapter<TasksAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
@@ -35,12 +36,20 @@ class TasksAdapter(private val context: Context, private val items: Array<Task>)
         holder.tvTaskName.setOnClickListener {
             toastMessage(context, "clicked task ${holder.tvTaskName.text}")
         }
+        if (items[position].completed) {
+            holder.tvTaskName.paintFlags = holder.tvTaskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+            holder.cbTaskComplete.isChecked = true
+        }
+
         holder.cbTaskComplete.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 holder.tvTaskName.paintFlags = holder.tvTaskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
+                items[position].completed = true
             } else {
                 holder.tvTaskName.paintFlags = holder.tvTaskName.paintFlags and Paint.STRIKE_THRU_TEXT_FLAG.inv()
+                items[position].completed = false
             }
+            dbHelper.changeTaskCompletion(dbHelper.writableDatabase, items[position])
         }
     }
 
