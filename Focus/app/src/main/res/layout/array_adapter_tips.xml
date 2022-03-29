@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/round_colour_rectangle"
+    android:padding="8dp">
+
+    <TextView
+        android:id="@+id/tvTipsHeading"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/tips_heading_placeholder"
+        android:textSize="28sp"
+        android:textColor="?attr/oppositeThemeTextColour"
+        android:fontFamily="@font/montserrat_bold"
+        android:layout_marginStart="8dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/tipsHeadingDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/tasksDividerColour"
+        app:layout_constraintTop_toBottomOf="@+id/tvTipsHeading"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <ImageView
+        android:id="@+id/ivTipsImage"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:src="@drawable/focus_logo_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvTipsHeading"
+        android:layout_marginTop="12dp"/>
+
+    <View
+        android:id="@+id/tipsTextDivider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="?attr/tasksDividerColour"
+        app:layout_constraintBottom_toTopOf="@+id/tvTipsText"
+        tools:layout_editor_absoluteX="8dp" />
+
+    <TextView
+        android:id="@+id/tvTipsText"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_margin="8dp"
+        android:scrollbars="vertical"
+        android:text="@string/tips_text_placeholder"
+        android:textColor="?attr/oppositeThemeTextColour"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ivTipsImage" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

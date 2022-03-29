@@ -3,9 +3,9 @@ package com.fyp.focus.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.provider.Settings
 import android.widget.Button
-import android.widget.TextView
+import android.widget.ImageView
+import android.widget.RelativeLayout
 import com.fyp.focus.R
 import com.fyp.focus.global.GlobalFunctions.logMessage
 import com.fyp.focus.global.GlobalVariables
@@ -15,9 +15,10 @@ private const val TAG = "MainActivity"
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var tvHeader: TextView
-    private lateinit var btnTimers: Button
-    private lateinit var btnTasks: Button
+    private lateinit var ivHeader: ImageView
+    private lateinit var rlTimers: RelativeLayout
+    private lateinit var rlTasks: RelativeLayout
+    private lateinit var rlTips: RelativeLayout
 
     private lateinit var preferences: UserPreferences
 
@@ -39,15 +40,20 @@ class MainActivity : AppCompatActivity() {
             logMessage(TAG, "taskTypes (${GlobalVariables.taskTypes.size}): ${GlobalVariables.taskTypes}")
         }
 
-        tvHeader = findViewById(R.id.tvHeader)
-        btnTimers = findViewById(R.id.btnTimers)
-        btnTimers.setOnClickListener {
+        ivHeader = findViewById(R.id.ivHeader)
+        rlTimers = findViewById(R.id.rlTimers)
+        rlTimers.setOnClickListener {
             val intent = Intent(this, TimerListActivity::class.java)
             startActivity(intent)
         }
-        btnTasks = findViewById(R.id.btnTasks)
-        btnTasks.setOnClickListener {
+        rlTasks = findViewById(R.id.rlTasks)
+        rlTasks.setOnClickListener {
             val intent = Intent(this, TasksActivity::class.java)
+            startActivity(intent)
+        }
+        rlTips = findViewById(R.id.rlTips)
+        rlTips.setOnClickListener {
+            val intent = Intent(this, TipsActivity::class.java)
             startActivity(intent)
         }
     }

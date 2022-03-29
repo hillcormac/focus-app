@@ -1,6 +1,28 @@
 <resources>
     <string name="app_name">Focus</string>
+    <string name="ellipses">...</string>
+
+    <string name="timers_button">TIMERS</string>
+    <string name="tasks_button">TASKS</string>
+    <string name="tips_button">TIPS</string>
+
+    <string name="no_timers_found">No Timers Found</string>
+    <string name="timer_name">Timer Name</string>
+    <string name="work">Work</string>
+    <string name="short_time">short</string>
+    <string name="long_time">long</string>
+
+    <string name="minutes">minutes</string>
+    <string name="seconds">seconds</string>
+    <string name="short_break">Short Break</string>
+    <string name="long_break">Long Break</string>
+    <string name="intervals_lower">intervals</string>
+
     <string name="title_activity_timer_list">TimerListActivity</string>
+    <string name="phase">Phase</string>
+    <string name="intervals">Intervals</string>
+    <string name="default_time">0:00</string>
+    <string name="start">Start</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
 
@@ -15,6 +37,8 @@
     <string name="select_task_type">Select a type…</string>
     <string name="select_task_deadline">Select a deadline…</string>
 
+    <!-- Tasks Activity -->
+    <string name="no_tasks_found">No Tasks Found</string>
     <string name="high_priority">High</string>
     <string name="medium_priority">Medium</string>
     <string name="low_priority">Low</string>
@@ -24,12 +48,51 @@
         <item>@string/medium_priority</item>
         <item>@string/low_priority</item>
     </string-array>
+    <string name="task">Task</string>
 
     <!-- Task Filters -->
+    <string name="placeholder_filter">Filter goes here</string>
     <string name="task_filter">Filter</string>
     <string name="filter_by_date">Date</string>
     <string name="filter_by_priority">Priority</string>
     <string name="filter_by_type">Type</string>
+
+    <!-- CreateNewTaskType -->
+    <string name="enter_task_type">Enter a new task type:</string>
+
+    <!-- Tips -->
+    <string name="tips_heading_placeholder">Tip Heading</string>
+    <string name="tips_text_placeholder">Tip text goes here.</string>
+    <string name="tips_heading_1">Using Timers</string>
+    <string name="tips_text_1">Using timers can help you stay focused on your work, by ensuring you don\'t spend too long at work. Research has shown that this can actually be of huge detriment to your performance on a task.
+    \n\nA great timer technique to use is the Pomodoro timer, which is split into 25 minutes of work and 5 minute breaks. You can try it for yourself in the <b>Timers</b> section of the app, or even try making your own custom timer to suit your work style!</string>
+    <string name="tips_heading_2">Track Your Tasks</string>
+    <string name="tips_text_2">Everyone knows about to-do lists, but did you know that making a list of tasks is actually scientifically proven to reduce stress related to the task and can also make you complete those tasks more effectively?
+    \n\nYou can track your upcoming tasks in the <b>Tasks</b> section of the app and tick them off as you complete them. Check it out and see how it can improve your productivity!</string>
+    <string name="tips_heading_3">Tidy Your Environment</string>
+    <string name="tips_text_3">Studies have shown that having a tidy and organised work environment can be incredibly beneficial for focusing on a task.
+        \n\nThe less clutter in your environment, the less likely you are to get distracted.
+        \n\nGive it a try and see how it works for you!</string>
+    <string name="tips_heading_4">Remove Distractions</string>
+    <string name="tips_text_4">It can be incredibly difficult to focus on one thing when being bombarded with information about other things. This is why it\'s important to remove all potential distractions from your work space.
+        \n\nTry going to a quiet or private place, where you won\'t be disturbed. Close any non-essential tabs or apps and silence notifications.
+        \n\nYou\'ll be amazed by how much of a difference such small changes can make to your focus!</string>
+    <string name="tips_heading_5">Form \u0026 Follow Rituals</string>
+    <string name="tips_text_5">The human brain loves routines as they can easily help us prepare for a certain activity.
+        \n\nA good method for getting in the zone of work is to create a specific ritual to follow before starting your work. This can help train your brain into \"work mode\" and make it much easier to get into a steady work rhythm. Try something as simple as making a specific cup of tea or coffee and see how it goes!</string>
+    <string name="tips_heading_6">Don\'t Multitask</string>
+    <string name="tips_text_6">Trying to complete multiple tasks at once can make us feel like we are being more productive, when in fact the effect is actually the opposite.
+        \n\nMultitasking leads to lower focus and lower productivity, and can increase the chance of you becoming burnt out of your work so avoid multitasking as much as possible!</string>
+    <string name="tips_heading_7">Listen to Music</string>
+    <string name="tips_text_7">Music has been proven to have therapeutic effects on our brains. Softer music can help to concentrate better, such as classical music or the sounds of nature, while music with lyrics or vocals can be more distracting.
+        \n\nNext time you\'re working try some of <a href="https://open.spotify.com/genre/focus-page">these playlists</a> on Spotify and see if they work for you!</string>
+    <string name="tips_heading_8">Take a Break</string>
+    <string name="tips_text_8">Working for a prolonged period of time on a task can have adverse effects on the quality of your work, so it\'s important to take breaks. If you ever start to feel stuck or like your focus is drifting from the task at hand, take a short break to refocus your attention.
+        \n\nRegular exercise releases chemicals that help with memory, concentration, and mental acuity, so it\'s recommended you go for a short walk during your breaks to get the creative juices flowing again!</string>
+    <string name="tips_heading_9">Find What Works For You</string>
+    <string name="tips_text_9">There are countless tips and tricks for improving your focus and productivity however there are even more factors that can have an impact on your concentration.
+        \n\nResearch has shown that minute factors such as temperature, air quality, and lighting can affect your focus and productivity, so it\'s important that you figure out what factors may be impacting you.
+        \n\nTry writing down what you think is effecting your work and see what changes you can make to help yourself be your best worker!</string>
 
 
 </resources>

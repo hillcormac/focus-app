@@ -14,7 +14,7 @@
         android:adjustViewBounds="true"
         android:fontFamily="@font/montserrat_extra_bold"
         android:maxWidth="75dp"
-        android:text="date"
+        android:text="@string/placeholder_filter"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

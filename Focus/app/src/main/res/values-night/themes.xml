@@ -18,6 +18,7 @@
         <item name="adapterBgColour">@color/lighter_dark_theme</item>
         <item name="tasksDividerColour">@color/dark_divider</item>
         <item name="oppositeThemeTextColour">@color/white</item>
+        <item name="themeMainColour">@color/black</item>
 
         <item name="android:fontFamily">@font/montserrat_medium</item>
     </style>

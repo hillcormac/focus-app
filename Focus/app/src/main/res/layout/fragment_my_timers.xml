@@ -13,7 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginBottom="50dp"
-        android:text="No Timers Found"
+        android:text="@string/no_timers_found"
         android:textSize="30sp"
         tools:visibility="gone" />
 
