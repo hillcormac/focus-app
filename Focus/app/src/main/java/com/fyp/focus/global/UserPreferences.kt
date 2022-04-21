@@ -3,6 +3,9 @@ package com.fyp.focus.global
 import android.content.Context
 import android.content.SharedPreferences
 
+/**
+ * Helper class for accessing and modifying SharedPreferences
+ */
 class UserPreferences(context: Context) {
     private val preferences: SharedPreferences = context.getSharedPreferences("preferences", Context.MODE_PRIVATE)
 

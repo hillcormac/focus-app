@@ -27,6 +27,7 @@ class TipsPagerAdapter(
     }
 
     override fun instantiateItem(container: ViewGroup, position: Int): Any {
+        // initialise layout components
         val view = layoutInflater.inflate(R.layout.array_adapter_tips, container, false)
         val tvTipsHeading = view.findViewById<TextView>(R.id.tvTipsHeading)
         val ivTipsImage = view.findViewById<ImageView>(R.id.ivTipsImage)

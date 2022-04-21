@@ -3,10 +3,12 @@ package com.fyp.focus.global
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
-import com.fyp.focus.R
 
 private const val TAG = "GlobalFunctions"
 
+/**
+ * Functions that can be used globally in the project
+ */
 object GlobalFunctions {
 
     fun logMessage(tag: String, message: String) {

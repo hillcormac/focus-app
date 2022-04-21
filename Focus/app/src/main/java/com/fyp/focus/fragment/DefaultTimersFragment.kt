@@ -35,30 +35,34 @@ class DefaultTimersFragment : Fragment() {
         dbHelper = DBHelper(this.requireContext(), "focus", "default_timers")
         preferences = UserPreferences(requireContext())
 
+        // check if the default_timers table exists, create it if not
         if (!preferences.defaultTimerDbCreated) {
-//            logMessage(TAG, "table not created, creating now")
+            logMessage(TAG, "table not created, creating now")
             dbHelper.createTimerTable(dbHelper.writableDatabase)
             preferences.defaultTimerDbCreated = true
         }
 
+        // get all default timers in the database
         val timerArray = ArrayList<Timer>()
         val cursor = dbHelper.readAllData(dbHelper.readableDatabase)
         if (cursor.moveToFirst()) {
             while (!cursor.isAfterLast) {
                 val timer = Timer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4))
                 timerArray.add(timer)
-//                logMessage(TAG, "timer: $timer")
+                logMessage(TAG, "timer: $timer")
                 cursor.moveToNext()
             }
         }
 
+        // attach adapter to ListView
         val adapter = TimerListAdapter(this, timerArray)
         val listView = requireView().findViewById<ListView>(R.id.lvDefaultTimers)
         listView.adapter = adapter
 
+        // start timer activity with the given timer when it is clicked
         listView.setOnItemClickListener { adapterView, view, i, l ->
             val intent = Intent(context, TimerActivity::class.java)
-//            logMessage(TAG, "intent extras: ${adapter.timers[i].name}, ${adapter.timers[i].timeWork}. ${adapter.timers[i].timeShortBreak}, ${adapter.timers[i].timeLongBreak}, ${adapter.timers[i].intervals}")
+            logMessage(TAG, "intent extras: ${adapter.timers[i].name}, ${adapter.timers[i].timeWork}. ${adapter.timers[i].timeShortBreak}, ${adapter.timers[i].timeLongBreak}, ${adapter.timers[i].intervals}")
             intent.putExtra("timerName", adapter.timers[i].name)
             intent.putExtra("timeWork", adapter.timers[i].timeWork)
             intent.putExtra("timeShortBreak", adapter.timers[i].timeShortBreak.toString())

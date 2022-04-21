@@ -50,12 +50,14 @@ class MyTimersFragment : Fragment(),
         preferences = UserPreferences(requireContext())
         adapter = TimerListAdapter(this, timerArray)
 
+        // check if my_timers table exists, create it if not
         if (!preferences.customTimerDbCreated) {
-//            logMessage(TAG, "table not created, creating now")
+            logMessage(TAG, "table not created, creating now")
             dbHelper.createTimerTable(dbHelper.writableDatabase)
             preferences.customTimerDbCreated = true
         }
 
+        // check if table is empty, if not get all custom timers
         if (dbHelper.isTableEmpty(dbHelper.readableDatabase)) {
             tvMyTimersList.visibility = View.VISIBLE
         } else {
@@ -67,18 +69,20 @@ class MyTimersFragment : Fragment(),
                 while (!cursor.isAfterLast) {
                     val timer = Timer(cursor.getString(0), cursor.getString(1), cursor.getString(2), cursor.getString(3), cursor.getInt(4))
                     timerArray.add(timer)
-//                logMessage(TAG, "timer: $timer")
+                    logMessage(TAG, "timer: $timer")
                     cursor.moveToNext()
                 }
             }
 
+            // attach adapter to ListView
             adapter = TimerListAdapter(this, timerArray)
             val listView = requireView().findViewById<ListView>(R.id.lvMyTimers)
             listView.adapter = adapter
 
+            // start timer activity with the given timer when it is clicked
             listView.setOnItemClickListener { adapterView, view, i, l ->
                 val intent = Intent(context, TimerActivity::class.java)
-//            logMessage(TAG, "intent extras: ${adapter.timers[i].name}, ${adapter.timers[i].timeWork}. ${adapter.timers[i].timeShortBreak}, ${adapter.timers[i].timeLongBreak}, ${adapter.timers[i].intervals}")
+                logMessage(TAG, "intent extras: ${adapter.timers[i].name}, ${adapter.timers[i].timeWork}. ${adapter.timers[i].timeShortBreak}, ${adapter.timers[i].timeLongBreak}, ${adapter.timers[i].intervals}")
                 intent.putExtra("timerName", adapter.timers[i].name)
                 intent.putExtra("timeWork", adapter.timers[i].timeWork)
                 intent.putExtra("timeShortBreak", adapter.timers[i].timeShortBreak.toString())
@@ -87,6 +91,7 @@ class MyTimersFragment : Fragment(),
                 startActivity(intent)
             }
 
+            // show confirm deletion dialog
             listView.setOnItemLongClickListener { adapterView, view, i, l ->
                 val dialog = ConfirmDeleteTimerDialogFragment(adapter.timers[i])
                 dialog.setTargetFragment(this, 1)
@@ -95,6 +100,7 @@ class MyTimersFragment : Fragment(),
             }
         }
 
+        // show create timer dialog
         fabMyTimers.setOnClickListener {
             val dialog = CreateCustomTimerDialogFragment(dbHelper)
             dialog.setTargetFragment(this, 1)
@@ -102,6 +108,12 @@ class MyTimersFragment : Fragment(),
         }
     }
 
+    /**
+     * Handle the creation of a new Timer
+     *
+     * @param dialog calling dialog
+     * @param timer the new Timer
+     */
     override fun onTimerCreated(dialog: DialogFragment, timer: Timer) {
         logMessage(TAG, "received timer $timer")
         dbHelper.insertTimerData(
@@ -118,6 +130,12 @@ class MyTimersFragment : Fragment(),
         }
     }
 
+    /**
+     * Handle the deletion of a Timer
+     *
+     * @param dialog calling dialog
+     * @param timer the Timer to be deleted
+     */
     override fun onDeleteTimer(dialog: DialogFragment, timer: Timer) {
         dbHelper.deleteData(dbHelper.writableDatabase, timer.name)
         adapter.remove(timer)

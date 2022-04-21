@@ -19,6 +19,7 @@ class ConfirmDeleteTimerDialogFragment(private val timer: Timer): DialogFragment
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        // initialise listener
         try {
             listener = targetFragment as ConfirmDeleteTimerDialogListener
         } catch (e: ClassCastException) {
@@ -30,6 +31,7 @@ class ConfirmDeleteTimerDialogFragment(private val timer: Timer): DialogFragment
         return activity?.let {
             val builder = AlertDialog.Builder(it)
 
+            // create builder and initialise components
             builder.setTitle("Delete Timer")
                 .setMessage("Are you sure you want to delete ${timer.name}?")
                 .setPositiveButton("Delete") { dialog, _ ->

@@ -62,6 +62,7 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
 
         tasksPriorityArray = arrayListOf(getString(R.string.high_priority), getString(R.string.medium_priority), getString(R.string.low_priority))
 
+        // check SharedPreferences for currently selected filter
         selectedFilter = when (preferences.selectedTaskFilter) {
             getString(R.string.filter_by_date) -> {
                 currentFilterId = R.id.filterDate
@@ -90,12 +91,14 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
         rvTasksList.layoutManager = LinearLayoutManager(this)
         rvTasksList.adapter = adapter
 
+        // check if DB table for tasks exists
         if (!preferences.tasksDbCreated) {
             logMessage(TAG, "table not created, creating now")
             dbHelper.createTaskTable(dbHelper.writableDatabase)
             preferences.tasksDbCreated = true
         }
 
+        // check if DB table for tasks is empty, else fetch all tasks
         if (dbHelper.isTableEmpty(dbHelper.readableDatabase)) {
             logMessage(TAG, "db empty, making tv visible")
             tvTasksList.visibility = View.VISIBLE
@@ -121,6 +124,7 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
             }
             logMessage(TAG, "all tasks: $tasksArray")
 
+            // sort array of unique dates and then format to look pretty
             val sortedArrays = sortDateArray(tasksDatesStringArray)
             tasksDatesArray = sortedArrays.first
             tasksDatesFormattedStringArray = sortedArrays.second
@@ -161,6 +165,7 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
                 tasksByTypeArray.add(Pair(type, tasks))
             }
 
+            // create adapter with array corresponding to currently selected filter
             adapter = when (preferences.selectedTaskFilter) {
                 getString(R.string.filter_by_date) -> TasksListAdapter(this, dbHelper, tasksByDateArray)
                 getString(R.string.filter_by_priority) -> TasksListAdapter(this, dbHelper, tasksByPriorityArray)
@@ -176,13 +181,23 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
         }
     }
 
+    /**
+     * Sort a given ArrayList of dates in order with most recent date first
+     *
+     * @param dates the ArrayList of dates to be sorted
+     * @returns Pair of ArrayLists, first list is sorted dates in LocalDate format for internal logic use,
+     *          second list is sorted dates in String format for displaying to the user
+     */
     private fun sortDateArray(dates: ArrayList<String>): Pair<ArrayList<LocalDate>, ArrayList<String>> {
+        // create array of LocalDates and convert all dates to that format and add to array
         val dateArray = ArrayList<LocalDate>()
         for (item in dates) {
             val date = LocalDate.parse(item, DateTimeFormatter.ISO_DATE)
             dateArray.add(date)
         }
+        // sort array of LocalDates
         dateArray.sort()
+        //create array of Strings and convert all sorted dates to that format and add to array
         val sortedArray = ArrayList<String>()
         for (date in dateArray) {
             val formattedDate = date.format(DateTimeFormatter.ofLocalizedDate(FormatStyle.MEDIUM))
@@ -191,6 +206,13 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
         return dateArray to sortedArray
     }
 
+    /**
+     * Find the index of a given date in the given ArrayList of sorted date
+     *
+     * @param date the date whose index we want to find
+     * @param sortedDates the sorted ArrayList containing the date whose index we want to find
+     * @return the index of the date
+     */
     private fun findIndexOfDateInSortedArray(date: String, sortedDates: ArrayList<String>): Int {
         for (index in 0 until sortedDates.size) {
             if (date == sortedDates[index]) {
@@ -200,6 +222,12 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
         return -1
     }
 
+    /**
+     * Handle the creation of a new Task
+     *
+     * @param dialog calling dialog
+     * @param task the new Task
+     */
     override fun onTaskCreated(dialog: DialogFragment, task: Task) {
         logMessage(TAG, "received task $task")
         dbHelper.insertTaskData(
@@ -298,6 +326,11 @@ class TasksActivity: AppCompatActivity(), CreateTaskDialogFragment.CreateTaskDia
         return true
     }
 
+    /**
+     * Handle changing task list filter
+     *
+     * @param item the selected menu item (filter)
+     */
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         if (item.itemId != currentFilterId)
             when (item.itemId) {

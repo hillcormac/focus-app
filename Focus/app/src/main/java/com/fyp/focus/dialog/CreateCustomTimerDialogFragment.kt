@@ -3,16 +3,13 @@ package com.fyp.focus.dialog
 import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.text.TextUtils
 import android.widget.EditText
-import android.widget.Toast
 import androidx.fragment.app.DialogFragment
 import com.fyp.focus.R
 import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Timer
-import com.fyp.focus.global.GlobalFunctions.logMessage
 import com.fyp.focus.global.GlobalFunctions.toastMessage
 import java.lang.ClassCastException
 import java.lang.IllegalStateException
@@ -37,6 +34,7 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        // initialise listener
         try {
             listener = targetFragment as CreateCustomTimerDialogListener
         } catch (e: ClassCastException) {
@@ -46,6 +44,7 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity.let {
+            // initialise components
             val dialogView = this.layoutInflater.inflate(R.layout.dialog_create_custom_timer, null)
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Custom Timer")
@@ -59,9 +58,11 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
             builder.setPositiveButton("Create Timer") { dialog, _ ->
                 val (errorMessage, valid) = allFieldsValid()
                 if (valid) {
+                    // if all fields of the dialog have valid value
                     if (etTimeWorkSecs?.text.toString().length == 1) {
                         etTimeWorkSecs?.setText(etTimeWorkSecs?.text.toString().padStart(2, '0'))
                     }
+                    // create Timer instance
                     val timer = Timer(
                         etTimerName?.text.toString(),
                         "${etTimeWorkMins?.text}:${etTimeWorkSecs?.text}",
@@ -69,6 +70,7 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
                         etTimeLongBreak?.text.toString(),
                         etTimerIntervals?.text.toString().toInt()
                     )
+                    // check if Timer already exists, if not pass to listener function
                     if (dbHelper.timerExists(dbHelper.readableDatabase, timer)) {
                         toastMessage(requireContext(), "Timer with name ${timer.name} already exists")
                     } else {
@@ -83,6 +85,11 @@ class CreateCustomTimerDialogFragment(private val dbHelper: DBHelper): DialogFra
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Check if all fields of the dialog contain valid values
+     *
+     * @return Pair of string stating reason for invalid and Boolean
+     */
     private fun allFieldsValid(): Pair<String, Boolean> {
         // if any fields are empty
         if (TextUtils.isEmpty(etTimerName?.text.toString()) || TextUtils.isEmpty(etTimeWorkMins?.text.toString()) || TextUtils.isEmpty(etTimeWorkSecs?.text.toString())

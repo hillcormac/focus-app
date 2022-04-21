@@ -12,6 +12,7 @@ private const val TAG = "TimerTabsAdapter"
 internal class TimerTabsAdapter(var context: Context, fm: FragmentManager, var totalTabs: Int): FragmentPagerAdapter(fm) {
 
     override fun getItem(position: Int): Fragment {
+        // return corresponding Fragment
         return when(position){
             0 -> {
                 DefaultTimersFragment()

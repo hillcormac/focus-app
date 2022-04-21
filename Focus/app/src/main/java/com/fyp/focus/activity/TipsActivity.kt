@@ -24,6 +24,7 @@ class TipsActivity : AppCompatActivity() {
         dotsIndicator = findViewById(R.id.dotsIndicator)
         vpTips = findViewById(R.id.vpTips)
 
+        // initialise tips series and layout components
         tipsArray.add(Tip(getString(R.string.tips_heading_1), R.drawable.using_timers, getString(R.string.tips_text_1)))
         tipsArray.add(Tip(getString(R.string.tips_heading_2), R.drawable.track_your_tasks, getString(R.string.tips_text_2)))
         tipsArray.add(Tip(getString(R.string.tips_heading_3), R.drawable.tidy_environment, getString(R.string.tips_text_3)))

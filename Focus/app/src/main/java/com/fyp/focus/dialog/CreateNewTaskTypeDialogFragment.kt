@@ -8,7 +8,6 @@ import android.text.TextUtils
 import android.widget.*
 import androidx.fragment.app.DialogFragment
 import com.fyp.focus.R
-import com.fyp.focus.customclass.Timer
 import com.fyp.focus.global.GlobalFunctions.toastMessage
 import com.fyp.focus.global.GlobalVariables
 import java.lang.ClassCastException
@@ -29,6 +28,7 @@ class CreateNewTaskTypeDialogFragment(): DialogFragment() {
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        // initialise listener
         try {
             listener = targetFragment as CreateNewTaskTypeDialogListener
         } catch (e: ClassCastException) {
@@ -43,9 +43,11 @@ class CreateNewTaskTypeDialogFragment(): DialogFragment() {
             builder.setTitle("Create a New Task Type")
             builder.setView(dialogView)
 
+            // initialise components
             etNewTaskType = dialogView.findViewById(R.id.etNewTaskType)
 
             builder.setPositiveButton("OK") { dialog, _ ->
+                // check if field has a valid value
                 if (TextUtils.isEmpty(etNewTaskType?.text.toString()) || etNewTaskType?.text.toString() == "null") {
                     toastMessage(requireContext(), "Please fill in the new task type field")
                 } else {

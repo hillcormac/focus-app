@@ -11,7 +11,6 @@ import androidx.fragment.app.DialogFragment
 import com.fyp.focus.R
 import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Task
-import com.fyp.focus.global.GlobalFunctions
 import com.fyp.focus.global.GlobalFunctions.logMessage
 import com.fyp.focus.global.GlobalFunctions.toastMessage
 import com.fyp.focus.global.GlobalVariables
@@ -23,7 +22,6 @@ import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import java.lang.ClassCastException
 import java.lang.IllegalStateException
-import java.time.LocalDate
 import java.util.*
 
 private const val TAG = "CreateTaskDialogFragment"
@@ -52,6 +50,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
     override fun onAttach(context: Context) {
         super.onAttach(context)
 
+        // initialise listener
         try {
             listener = context as CreateTaskDialogListener
         } catch (e: ClassCastException) {
@@ -61,6 +60,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         return activity.let {
+            // initialise components
             val dialogView = this.layoutInflater.inflate(R.layout.dialog_create_task, null)
             val builder = AlertDialog.Builder(it)
             builder.setTitle("Create a Task")
@@ -84,6 +84,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
             taskTypeAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
             spnTaskType?.adapter = taskTypeAdapter
 
+            // initialise spinner for task type
             spnTaskType?.onItemSelectedListener = object: AdapterView.OnItemSelectedListener {
                 override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
                     if (position != 0) {
@@ -97,6 +98,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
                 }
             }
 
+            // initialise spinner for task priority
             ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.task_priorities,
@@ -119,6 +121,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
                 }
             }
 
+            // initialise date picker for task deadline
             tvTaskDeadline?.setOnClickListener {
                 val datePickerBuilder = MaterialDatePicker.Builder.datePicker()
                 val constraints = CalendarConstraints.Builder()
@@ -166,6 +169,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
             builder.setPositiveButton("Create Task") { dialog, _ ->
                 val (errorMessage, valid) = allFieldsValid()
                 if (valid) {
+                    // if all fields have valid values
                     val task = Task(
                         etTaskName?.text.toString(),
                         taskTypeSelected!!,
@@ -173,6 +177,7 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
                         taskTimeSelected!!,
                         taskPrioritySelected!!
                     )
+                    // check if the Task already exists, if not pass to listener function
                     if (dbHelper.taskExists(dbHelper.readableDatabase, task)) {
                         toastMessage(requireContext(), "Task  '${task.name}' @ '${task.date} - ${task.time}' already exists")
                     } else {
@@ -188,17 +193,26 @@ class CreateTaskDialogFragment(private val dbHelper: DBHelper): DialogFragment()
         } ?: throw IllegalStateException("Activity cannot be null")
     }
 
+    /**
+     * Check if all fields of the dialog contain valid values
+     *
+     * @return Pair of string stating reason for invalid and Boolean
+     */
     private fun allFieldsValid(): Pair<String, Boolean> {
         // if any fields are empty
         if (TextUtils.isEmpty(etTaskName?.text.toString()) || taskTypeSelected == null || taskDateSelected == null
             || taskTimeSelected == null || taskPrioritySelected == null) {
             return "Please fill in all fields" to false
-//        } else if (taskDateSelected!! < ) {
-//            return "Deadline cannot be in the past" to false
         }
         return "" to true
     }
 
+    /**
+     * Updates list of task types when a new type is created
+     *
+     * @param dialog calling dialog
+     * @param newType the new type that was added
+     */
     override fun onTaskTypeCreated(dialog: DialogFragment, newType: String) {
         taskTypeAdapter.notifyDataSetChanged()
         val preferences = UserPreferences(requireContext())

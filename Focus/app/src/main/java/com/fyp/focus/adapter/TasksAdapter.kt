@@ -5,16 +5,12 @@ import android.graphics.Paint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.CheckBox
-import android.widget.RadioButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.fyp.focus.R
 import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Task
-import com.fyp.focus.global.GlobalFunctions.logMessage
-import com.fyp.focus.global.GlobalFunctions.toastMessage
 
 private const val TAG = "TasksAdapter"
 
@@ -34,13 +30,15 @@ class TasksAdapter(private val context: Context, private val dbHelper: DBHelper,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvTaskName.text = items[position].name
         holder.tvTaskName.setOnClickListener {
-            toastMessage(context, "clicked task ${holder.tvTaskName.text}")
+            // open detailed view of task details
         }
+        // check if the item has been ticked as completed
         if (items[position].completed) {
             holder.tvTaskName.paintFlags = holder.tvTaskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG
             holder.cbTaskComplete.isChecked = true
         }
 
+        // change text style based on completion status and update DB entry with new status
         holder.cbTaskComplete.setOnCheckedChangeListener { _, isChecked ->
             if (isChecked) {
                 holder.tvTaskName.paintFlags = holder.tvTaskName.paintFlags or Paint.STRIKE_THRU_TEXT_FLAG

@@ -3,7 +3,6 @@ package com.fyp.focus.activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import com.fyp.focus.R
@@ -40,6 +39,7 @@ class MainActivity : AppCompatActivity() {
             logMessage(TAG, "taskTypes (${GlobalVariables.taskTypes.size}): ${GlobalVariables.taskTypes}")
         }
 
+        // initialise components
         ivHeader = findViewById(R.id.ivHeader)
         rlTimers = findViewById(R.id.rlTimers)
         rlTimers.setOnClickListener {

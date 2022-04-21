@@ -47,6 +47,7 @@ class TimerActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_timer)
 
+        // initialise layout and components
         val windowInsetsController = ViewCompat.getWindowInsetsController(window.decorView) ?: return
         windowInsetsController.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE
         windowInsetsController.hide(WindowInsetsCompat.Type.systemBars())
@@ -58,6 +59,7 @@ class TimerActivity : AppCompatActivity() {
         }
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as Vibrator
 
+        // get extras and create Timer instance
         val timerName = intent.getStringExtra("timerName")!!
         val timeWork = intent.getStringExtra("timeWork")!!
         val timeShortBreak = intent.getStringExtra("timeShortBreak")!!
@@ -70,11 +72,17 @@ class TimerActivity : AppCompatActivity() {
         initComponents()
     }
 
+    /**
+     * Cancel any active CountDownTimer when the Activity is destroyed
+     */
     override fun onDestroy() {
         super.onDestroy()
         countDownTimer?.cancel()
     }
 
+    /**
+     * Initialise the components of the Activity
+     */
     private fun initComponents() {
         title = timer.name
         tvPhase = findViewById(R.id.tvPhase)
@@ -103,10 +111,15 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Control the timer i.e. start, stop, reset
+     */
     private fun controlTimer() {
         when (isTimerRunning) {
             false -> {
+                // timer is not running, check if it was already started this phase
                 countDownTimer = if (!isPhaseStarted) {
+                    // if not started this phase run from beginning
                     logMessage(TAG, "starting timer")
                     when (tvPhase.text) {
                         "work" -> createCountDownTimer(timer.timeWorkMillis, timer.timeWorkMins, timer.timeWorkSecs).start()
@@ -115,6 +128,7 @@ class TimerActivity : AppCompatActivity() {
                         else -> null
                     }
                 } else {
+                    // if already started, start running from paused details
                     logMessage(TAG, "resuming timer")
                     createCountDownTimer(pausedTimerDetails[0].toLong(), pausedTimerDetails[1], pausedTimerDetails[2], true).start()
                 }
@@ -123,6 +137,7 @@ class TimerActivity : AppCompatActivity() {
                 btnControlTimer.text = "stop"
             }
             true -> {
+                // stop timer if running and save remaining time to variable
                 logMessage(TAG, "pausing timer")
                 countDownTimer?.cancel()
                 isTimerRunning = false
@@ -136,13 +151,24 @@ class TimerActivity : AppCompatActivity() {
             }
         }
         if (currentPhase == "complete") {
+            // phase complete, move to next phase of timer
             currentInterval = 1
             nextPhase()
         }
     }
 
+    /**
+     * Create an instance of CountDownTimer
+     *
+     * @param totalTime the totalTime of the CountDownTimer
+     * @param totalTimeMins the minutes in the starting totalTime (for display purposes)
+     * @param totalTimeSecs the seconds in the starting totalTime (for display purposes)
+     * @param resumedTimer true if this CountDownTimer is starting from a previously paused instance
+     * @return a CountDownTimer instance
+     */
     private fun createCountDownTimer(totalTime: Long, totalTimeMins: Int, totalTimeSecs: Int, resumedTimer: Boolean = false): CountDownTimer {
 
+        // override the total time if this instance is not resuming a paused timer
         if (!resumedTimer) {
             currentTimerTotalMillis = totalTime
         }
@@ -169,10 +195,11 @@ class TimerActivity : AppCompatActivity() {
                 }
                 val remainingPercentage = (millisUntilFinished.toDouble()/currentTimerTotalMillis.toDouble()) * pbTimer.max
                 pbTimer.progress = remainingPercentage.toInt()
-//                logMessage(TAG, "tick = ${tvTimer.text}, progess = ${pbTimer.progress}")
+                logMessage(TAG, "tick = ${tvTimer.text}, progess = ${pbTimer.progress}")
             }
 
             override fun onFinish() {
+                // vibrate device when timer ends, and move to next phase or allow timer to be reset if finished
                 vibrator.vibrate(600)
                 logMessage(TAG, "timer finished")
                 isTimerRunning = false
@@ -187,6 +214,9 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Move timer to next phase
+     */
     private fun nextPhase() {
 
         if (currentPhase.contains("break")) {
@@ -215,6 +245,9 @@ class TimerActivity : AppCompatActivity() {
         changeTimerPhase()
     }
 
+    /**
+     * Move timer to previous phase
+     */
     private fun prevPhase() {
 
         if (currentPhase.contains("work")) {
@@ -237,6 +270,9 @@ class TimerActivity : AppCompatActivity() {
         changeTimerPhase()
     }
 
+    /**
+     * Update timer visuals and variables when changing phase
+     */
     private fun changeTimerPhase() {
         if (isTimerRunning) {
             countDownTimer?.cancel()
@@ -266,6 +302,11 @@ class TimerActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Set colours of the view
+     *
+     * @param colour the colour to set the elements of the view
+     */
     private fun setColours(colour: Int) {
         pbTimer.progressTintList = ColorStateList.valueOf(colour)
         btnControlTimer.setBackgroundColor(colour)

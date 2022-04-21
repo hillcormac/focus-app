@@ -12,8 +12,6 @@ import androidx.recyclerview.widget.RecyclerView
 import com.fyp.focus.R
 import com.fyp.focus.customclass.DBHelper
 import com.fyp.focus.customclass.Task
-import com.fyp.focus.global.GlobalFunctions.logMessage
-import com.fyp.focus.global.GlobalFunctions.toastMessage
 
 
 private const val TAG = "TasksListAdapter"
@@ -35,6 +33,7 @@ class TasksListAdapter(private val context: Context, private val dbHelper: DBHel
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.tvDateHeading.text = items[position].first
         holder.btnExpandDate.setOnClickListener {
+            // add animation and functionality to expansion button
             val deg = if (holder.btnExpandDate.rotation == 180f) 0f else 180f
             holder.btnExpandDate.animate().rotation(deg).interpolator = AccelerateDecelerateInterpolator()
             holder.rvTasks.visibility = when (holder.rvTasks.visibility) {
@@ -43,6 +42,7 @@ class TasksListAdapter(private val context: Context, private val dbHelper: DBHel
                 else -> View.VISIBLE
             }
         }
+        // initialise internal RecyclerView and attach adapter of individual tasks
         holder.rvTasks.layoutManager = LinearLayoutManager(context)
         holder.rvTasks.adapter = TasksAdapter(context, dbHelper, items[position].second)
     }

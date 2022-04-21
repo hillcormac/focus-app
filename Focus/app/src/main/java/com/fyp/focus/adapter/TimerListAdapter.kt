@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.fyp.focus.R
 import com.fyp.focus.customclass.Timer
-import com.fyp.focus.global.GlobalFunctions.logMessage
 
 private const val TAG = "TimerListAdapter"
 
@@ -25,6 +24,7 @@ class TimerListAdapter(
         val shortBreakTimer = rowView.findViewById<TextView>(R.id.tvShortTime)
         val longBreakTimer = rowView.findViewById<TextView>(R.id.tvLongTime)
 
+        // initialise layout components
         timerName?.text = timers[position].name
         workTimer?.text = timers[position].timeWork
         shortBreakTimer?.text = "${timers[position].timeShortBreak}:00"
