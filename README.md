@@ -14,6 +14,7 @@ Recent surges in remote working solutions have caused many people across both in
 The _Timers_ section of the application allows users to utilise a set of default timers that come pre-installed in the application, and also provides them with the ability to create their own set of custom timers to better suit their own style of work. Research suggests that working on tasks in set time intervals can improve focus on the given task which can result in an improvement in productivity. Each timer consists of a number of work, short break, and long break phases.
 
 See the list views of both Default and Custom Timers below.
+
 ![alt text](readme_imgs/timer_tabs.png "List of Default and Custom Timers")
 
 See the various phases of a Timer below.
